@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="icon" type="image/png" href="./NoStatic/assets/img/favicon.png" />
+<title>登录页面</title>
+<meta charset="UTF-8">
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<!--<script type="application/x-javascript">-->
+	 <!--addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } -->
+<!--</script>-->
+<!--<meta name="keywords"-->
+	<!--content="Flat Dark Web Login Form Responsive Templates, Iphone Widget Template, -->
+	<!--Smartphone login forms,Login form, Widget Template, Responsive Templates, a Ipad 404 Templates, Flat Responsive Templates" />-->
+	<link href="./static/css/style.css" rel='stylesheet' type='text/css' />
+	<link href="./static/css/simply-toast.min.css" rel='stylesheet' type='text/css' />
+	<script type="text/javascript" src="./static/js/jquery-2.2.3.js"></script>
+	<script src="./static/js/simply-toast.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="./static/js/mobile.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body>
+	<script>
+		$(document).ready(function(c) {
+			$('.close').on('click', function(c) {
+				$('.login-form').fadeOut('slow', function(c) {
+					$('.login-form').remove();
+				});
+			});
+		});
+	</script>
+	<!--SIGN UP-->
+	<h1>Unique</h1>
+	
+		
+	<div class="login-form"> <br></br>
+
+
+		<div class="clear"></div>
+		<div class="avtar">
+			<img src="./static/images/avtar.png" />
+		</div>
+		<form>
+			<div>
+				<input type="text" placeholder="请输入姓名" name="username" id="name"
+					style="width: 200px; height: 30px" />
+			</div>
+			<div>
+				<input type="password" placeholder="请输入密码" name="password" id="passwd"
+					   style="width: 200px; height: 30px" />
+			</div>
+			<div>
+				<input type="text" placeholder="请输入验证码" name="imgcode" id="code"
+					   style="width: 200px; height: 30px" /><img src="./services/img" id="loginimgCode" onclick="refreshImg()">
+			</div>
+
+		</form>
+		<div class="signin">
+			<input type="button" value="登录" onclick="dosomething()"> <br>
+			</br>
+			<div>
+				<span class="name" style="font-size: 22px; color: #F0F8FF;"
+					text-aline="left"></span>
+			</div>
+			<div>
+				<span class="address" style="font-size: 22px; color: #F0F8FF;"
+					text-aline="left"></span>
+			</div>
+			<div>
+				<span class="tel" style="font-size: 22px; color: #F0F8FF;"
+					text-aline="left"></span>
+			</div>
+			<div>
+				<span class="car" style="font-size: 22px; color: #F0F8FF;"
+					text-aline="left"></span>
+			</div>
+		</div>
+	</div>
+	<!--<div class="copy-rights">-->
+		<!--<p>-->
+			<!--时间：2017年1月18日(星期三)<a target="_blank"></a>-->
+		<!--</p>-->
+		<!--<p>-->
+			<!--地点：天津生态城世茂希尔顿酒店<a target="_blank"></a>-->
+		<!--</p>-->
+		<!--<form action="services/query/saveExcl" method="post"-->
+			<!--enctype="multipart/form-data">-->
+			<!--<p>-->
+				<!--选择需要上传的数据文件 : <input type="file" name="selectedFile" />-->
+			<!--</p>-->
+			<!--<input type="submit" value="上传数据" />-->
+		<!--</form>-->
+	<!--</div>-->
+
+</body>
+</html>

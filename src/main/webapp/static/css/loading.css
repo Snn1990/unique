@@ -1,0 +1,36 @@
+.mask-main{
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.64);
+    z-index: 99999;
+    display: none;
+}
+.load{
+    position: absolute;
+    width:400px;
+    padding: 100px 20px;
+    z-index: 999999;
+    left: 50%;
+    top: 50%;
+    display: none;
+    text-align: center;
+    box-sizing: border-box;
+}
+.load img{
+    width: 12%;
+}
+.loading-a{
+    position: absolute;
+    padding: 20px 30px;
+    background-color: #900403;
+    border-radius: 6px;
+    z-index: 999999999999;
+}
+.jiazai{
+    margin-top: 10px;
+    color: #fff;
+    font-size: 16px;
+}

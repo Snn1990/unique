@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/aop
+   	 	http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!--注解说明 -->
+    <context:annotation-config/>
+
+    <!-- 注解支持 -->
+    <mvc:annotation-driven/>
+    <!-- 使Spring支持自动检测组件，如注解的Controller -->
+    <context:component-scan base-package="com.unique">
+        <!-- 允许定义过滤器将基包下的某些类纳入或排除  -->
+        <!--<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
+    </context:component-scan>
+
+    <!--aop star-->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+    <!--aop end-->
+
+
+    <mvc:resources mapping="/static/**" location="/static/"/>
+
+    <!-- 配置springmvc支持自动转换json -->
+    <!--<bean id="mappingJacksonHttpMessageConverter"-->
+    <!--class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">-->
+    <!--<property name="supportedMediaTypes">-->
+    <!--<list>-->
+    <!--<value>text/html;charset=UTF-8</value>-->
+    <!--</list>-->
+    <!--</property>-->
+    <!--</bean>-->
+
+
+    <!-- 配置freeMarker视图解析器 -->
+    <bean id="viewResolverFtl" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <!--<property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>-->
+        <property name="contentType" value="text/html; charset=utf-8"/>
+        <property name="cache" value="true"/>
+        <property name="suffix" value=".ftl"/>
+        <property name="order" value="0"/>
+        <property name="viewClass" value="com.unique.utils.MyFreeMarkerView"/>
+    </bean>
+
+    <!-- 配置freeMarker的模板路径 -->
+    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath">
+            <value>/WEB-INF/templates/</value>
+        </property>
+        <property name="defaultEncoding">
+            <value>utf-8</value>
+        </property>
+        <property name="freemarkerSettings">
+            <props>
+                <prop key="template_update_delay">0</prop>
+            </props>
+        </property>
+
+    </bean>
+    <mvc:interceptors>
+    <mvc:interceptor>
+    <mvc:mapping path="/**" />
+    <mvc:exclude-mapping path="/login" />
+    <mvc:exclude-mapping path="/static/**" />
+    <mvc:exclude-mapping path="/logout" />
+    <mvc:exclude-mapping path="/index" />
+    <mvc:exclude-mapping path="/img" />
+    <bean class="com.unique.filter.LoginInterceptor" />
+    </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!-- 通过实体类返回json格式数据的关键配置 -->
+    <!--<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">-->
+        <!--<property name="messageConverters">-->
+            <!--<list>-->
+                <!--<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">-->
+                    <!--<property name="supportedMediaTypes">-->
+                        <!--<list> &lt;!&ndash;返回字符串格式json&ndash;&gt;-->
+                            <!--<value>application/json;charset=UTF-8</value>-->
+                        <!--</list>-->
+                    <!--</property>-->
+                <!--</bean>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+    <!--<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
+        <!--<property name="maxUploadSize" value="102400000"></property>-->
+    <!--</bean>-->
+    <!-- json转换器 -->
+    <!--<bean id="jsonConverter"-->
+          <!--class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">  <property name="supportedMediaTypes" value="application/json" />-->
+    <!--</bean>-->
+
+
+    <beans profile="develop" default-lazy-init="true">
+        <context:property-placeholder location="classpath*:properties/develop/*.properties"/>
+    </beans>
+
+    <beans profile="product" default-lazy-init="true">
+        <context:property-placeholder location="classpath*:properties/product/*.properties"/>
+    </beans>
+
+
+</beans>

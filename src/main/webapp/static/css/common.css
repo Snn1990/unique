@@ -1,0 +1,56 @@
+/*common页*/
+img{
+    border: none;
+}
+html{
+    font-size:125%;
+}
+body{
+    font-size: 14px;
+    font-size: 0.7rem;
+    font-family: "微软雅黑",Arial;
+    background: #f4f4f1;
+}
+*{
+    padding:0;
+    margin:0;
+    letter-spacing: 1px;
+}
+.middle-{
+    width: 1130px;
+    width: 56.5rem;
+    margin: 0 auto;
+}
+ul,li{
+    list-style:none;
+}
+.clear{
+    clear:both;
+}
+.fleft{
+    float: left;
+}
+.fright{
+    float: right;
+}
+a{
+    text-decoration: none;
+}
+.center{
+    width: 1200px;
+    width: 60rem;
+    margin: 0 auto;
+}
+textarea,select,input{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+}
+@media screen and (min-width:1370px){
+    html{
+        font-size:175%;
+    }
+}
+/*common 页*/
+

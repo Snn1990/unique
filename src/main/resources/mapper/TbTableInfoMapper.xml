@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.unique.dao.TbTableInfoDAO">
+    <resultMap id="BaseResultMap" type="com.unique.po.TbTableInfoPO">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="nameInfo" property="nameinfo" jdbcType="VARCHAR"/>
+        <result column="amount" property="amount" jdbcType="VARCHAR"/>
+        <result column="descInfo" property="descinfo" jdbcType="VARCHAR"/>
+        <result column="place" property="place" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, nameInfo, amount, descInfo, place, create_time, user_id
+  </sql>
+
+    <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_table_info
+        where user_id = #{userId,jdbcType=INTEGER}
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_table_info
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_table_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.unique.po.TbTableInfoPO">
+    insert into tb_table_info (id, nameInfo, amount, 
+      descInfo, place, create_time, 
+      user_id)
+    values (#{id,jdbcType=INTEGER}, #{nameinfo,jdbcType=VARCHAR}, #{amount,jdbcType=VARCHAR}, 
+      #{descinfo,jdbcType=VARCHAR}, #{place,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{userId,jdbcType=INTEGER})
+  </insert>
+    <insert id="insertSelective" parameterType="com.unique.po.TbTableInfoPO">
+        insert into tb_table_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="nameinfo != null">
+                nameInfo,
+            </if>
+            <if test="amount != null">
+                amount,
+            </if>
+            <if test="descinfo != null">
+                descInfo,
+            </if>
+            <if test="place != null">
+                place,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="nameinfo != null">
+                #{nameinfo,jdbcType=VARCHAR},
+            </if>
+            <if test="amount != null">
+                #{amount,jdbcType=VARCHAR},
+            </if>
+            <if test="descinfo != null">
+                #{descinfo,jdbcType=VARCHAR},
+            </if>
+            <if test="place != null">
+                #{place,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.unique.po.TbTableInfoPO">
+        update tb_table_info
+        <set>
+            <if test="nameinfo != null">
+                nameInfo = #{nameinfo,jdbcType=VARCHAR},
+            </if>
+            <if test="amount != null">
+                amount = #{amount,jdbcType=VARCHAR},
+            </if>
+            <if test="descinfo != null">
+                descInfo = #{descinfo,jdbcType=VARCHAR},
+            </if>
+            <if test="place != null">
+                place = #{place,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.unique.po.TbTableInfoPO">
+    update tb_table_info
+    set nameInfo = #{nameinfo,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=VARCHAR},
+      descInfo = #{descinfo,jdbcType=VARCHAR},
+      place = #{place,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      user_id = #{userId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
