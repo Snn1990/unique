@@ -36,6 +36,7 @@ public class ExceptionAdvisor {
         Class<?>[] obgList = method.getParameterTypes();
         Object object = null;
         logger.info("AOP事务开始...");
+	
         logger.info("本次调用方法名为：" + method.getName());
         for (Class<?> clas : obgList) {
             logger.info("参数类型为:" + clas);
